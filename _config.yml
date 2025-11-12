@@ -1,0 +1,65 @@
+title: "Kitiabi Sohre | Advancing Data-Driven Public Health"
+name: "Kitiabi Sohre"
+email: "hkitiabi@gmail.com"
+description: "Advancing Data-Driven Public Health"
+url: ""      # e.g., https://<your-username>.github.io
+baseurl: ""  # leave empty for user/organization site
+remote_theme: "academicpages/academicpages"
+plugins:
+  - jekyll-remote-theme
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-paginate
+  - jekyll-feed
+  - jemoji
+
+# Social placeholders (replace later)
+github_username: your-github
+linkedin_username: your-linkedin
+twitter_username: your-twitter
+orcid: https://orcid.org/your-orcid
+google_scholar: https://scholar.google.com/citations?user=your-id
+
+# Appearance
+highlighter: rouge
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+permalink: /:categories/:title/
+paginate: 5
+
+collections:
+  teaching:
+    output: true
+  publications:
+    output: true
+  portfolio:
+    output: true
+  talks:
+    output: true
+
+include:
+  - _pages
+
+sass:
+  style: compressed
+
+# Google Analytics (placeholder)
+google_analytics: "G-XXXXXXXXXX"
+
+# Custom stylesheet
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: single
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+
+# Navigation
+navigation: /_data/navigation.yml
