@@ -5,8 +5,7 @@ description: "Advancing Data-Driven Public Health"
 url: ""      # e.g., https://<your-username>.github.io
 baseurl: ""  # leave empty for user/organization site
 #remote_theme: "academicpages/academicpages"
-remote_theme: academicpages/academicpages.github.io
-
+remote_theme: mmistakes/minimal-mistakes@4.24.0
 plugins:
   - jekyll-remote-theme
   - jekyll-sitemap
