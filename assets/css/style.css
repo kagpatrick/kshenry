@@ -1,41 +1,47 @@
+/* -------------------------------------------------
+   JIN-SUN-ISH THEME  (overwrite only what we need)
+   ------------------------------------------------- */
 :root {
-  --bg: #ffffff;
-  --text: #2c3e50;
-  --muted: #7f8c8d;
-  --accent: #3498db;
-  --accent-light: #d6eaf8;
+  --bg: #ffffff;                 /* plain white page */
+  --text: #2c3e50;               /* dark slate headings */
+  --muted: #7f8c8d;              /* softer grey */
+  --accent: #3498db;             /* Jin Sun blue */
+  --accent-light: #d6eaf8;       /* very pale blue */
   --accent-dark: #2980b9;
-  --card: #ffffff;
-  --border: #ecf0f1;
+  --card: #ffffff;               /* white cards */
+  --border: #ecf0f1;             /* barely visible lines */
 }
 
-*,*::before,*::after{box-sizing:border-box;}
-html,body{margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";background:var(--bg);color:var(--text);line-height:1.6;}
-h1,h2,h3{font-family:inherit;font-weight:600;color:var(--text);}
-a{color:var(--accent);text-decoration:none;}
-a:hover{color:var(--accent-dark);}
-.container{max-width:1100px;margin:0 auto;padding:24px;}
-header{position:sticky;top:0;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);z-index:10;}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;}
-.brand{font-weight:800;font-size:18px;}
-.tag{font-size:13px;color:var(--muted);}
-nav a{margin-left:16px;font-weight:600;position:relative;padding-bottom:6px;}
-nav a:hover::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:2px;background:var(--accent);border-radius:2px;}
-.layout{display:grid;grid-template-columns:280px 1fr;gap:28px;margin-top:24px;}
-@media(max-width:900px){.layout{grid-template-columns:1fr;}.sidebar{position:relative;}}
-.sidebar{position:sticky;top:72px;align-self:start;background:var(--card);border:1px solid var(--border);border-radius:0;padding:20px;}
-.avatar{width:100%;max-width:160px;height:160px;border-radius:999px;background:linear-gradient(135deg,#e2e8f0,#cbd5e1);border:4px solid var(--accent-light);display:block;margin:0 auto 12px;transition:none;}
-.sidebar .name{font-size:22px;font-weight:800;margin:8px 0;}
-.sidebar .tagline{color:var(--muted);}
-.card{background:var(--card);border:1px solid var(--border);border-radius:0;padding:24px;margin-bottom:20px;box-shadow:none;transition:none;}
-.card:hover{box-shadow:none;transform:none;}
-.kicker{color:var(--accent);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;font-size:12px;margin-bottom:8px;}
-.btn{display:inline-block;background:var(--accent);color:#fff;border-radius:0;padding:10px 16px;font-weight:700;border:none;}
-.btn:hover{background:var(--accent-dark);}
-.footer{margin-top:40px;padding:24px 0;border-top:1px solid var(--border);color:var(--muted);font-size:14px;text-align:center;}
-.table{width:100%;border-collapse:collapse;}
-.table th,.table td{border-bottom:1px solid var(--border);padding:10px;text-align:left;}
-hr{border:none;border-top:1px solid var(--border);margin:18px 0;}
-@media(prefers-color-scheme:dark){
-  :root{--bg:#1e293b;--text:#f8fafc;--card:#334155;--border:#475569;--accent:#60a5fa;--accent-dark:#3b82f6;--accent-light:#1e293b;--muted:#cbd5e1;}
+/* -------------------------------------------------
+   kill rounded corners & soft shadows
+   ------------------------------------------------- */
+.card,
+.sidebar,
+.btn,
+.avatar {
+  border-radius: 0 !important;
+  box-shadow: none !important;
 }
+
+.card:hover {
+  transform: none !important;    /* no lift effect */
+}
+
+/* -------------------------------------------------
+   header: white background, thin grey line
+   ------------------------------------------------- */
+header {
+  background: rgba(255,255,255,.92);   /* white instead of #F8FAFC */
+  border-bottom: 1px solid var(--border);
+}
+
+/* -------------------------------------------------
+   body background
+   ------------------------------------------------- */
+body {
+  background: var(--bg);         /* plain white */
+}
+
+/* -------------------------------------------------
+   keep everything else exactly as you already have
+   ------------------------------------------------- */
