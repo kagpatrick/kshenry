@@ -1342,28 +1342,3 @@ html{
   .sidebar{ position: static; }
   .sidebar img.avatar{ height: 260px; }
 }
-/* =========================================================
-   PROFILE PANEL: ALWAYS KEEP GAP BELOW STICKY HEADER
-   ========================================================= */
-
-:root{
-  --profile-gap: 24px; /* adjust 16–32px */
-}
-
-/* Profile panel sticks with a permanent gap below header */
-.sidebar{
-  position: sticky;
-  top: calc(var(--header-h) + var(--profile-gap));
-  align-self: start;
-}
-
-/* Ensure the profile panel never "fills" the header space */
-.sidebar{
-  max-height: calc(100vh - var(--header-h) - var(--profile-gap) - 20px);
-  overflow: visible; /* no internal scrolling */
-}
-
-/* If any parent overflow breaks sticky, neutralize it */
-.container, .layout{
-  overflow: visible;
-}
