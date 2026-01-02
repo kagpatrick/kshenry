@@ -1,124 +1,261 @@
-/* ---------- Jin Sun look-alike variables ---------- */
+/* ---------- Jin Sun look-alike variables (enhanced) ---------- */
 :root {
-  --bg: #ffffff;                 /* plain white background */
-  --text: #2c3e50;               /* dark slate headings */
-  --muted: #7f8c8d;              /* soft grey for sub-titles */
-  --accent: #3498db;             /* blue links */
+  /* Colors */
+  --bg: #ffffff;
+  --text: #2c3e50;
+  --muted: #7f8c8d;
+  --accent: #3498db;
   --accent-dark: #2980b9;
-  --border: #ecf0f1;              /* very light separator */
+  --border: #ecf0f1;
   --card: #ffffff;
+
+  /* Type */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+               "Segoe UI Emoji", "Segoe UI Symbol";
+  --text-size: 16px;
+  --line: 1.65;
+
+  /* Layout + spacing scale */
+  --container: 72ch;          /* better reading width than px */
+  --pad-x: 1.5rem;
+  --pad-y: 2.5rem;
+
+  --space-1: 0.5rem;
+  --space-2: 0.75rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+  --space-6: 3rem;
+
+  /* UI */
+  --header-h: 3.5rem;         /* used for sticky offsets */
+  --ring: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
 }
 
-/* ---------- reset & base typography (Jin Sun stack) ---------- */
+/* ---------- reset & base ---------- */
 *,
 *::before,
 *::after { box-sizing: border-box; }
 
-html,
+html {
+  font-size: var(--text-size);
+  color-scheme: light;
+  text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-               "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
-               "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: var(--font-sans);
   background: var(--bg);
   color: var(--text);
-  line-height: 1.65;
+  line-height: var(--line);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-/* ---------- headings (same stack, no serif) ---------- */
+img, svg, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------- typography ---------- */
+p { margin: 0 0 var(--space-3); }
+
 h1, h2, h3, h4, h5, h6 {
-  font-family: inherit;           /* keep system font */
+  font-family: inherit;
   font-weight: 600;
   color: var(--text);
-  margin: 1.2rem 0 0.6rem;
+  margin: var(--space-5) 0 var(--space-2);
+  letter-spacing: -0.01em;
 }
 
-/* ---------- links ---------- */
-a { color: var(--accent); text-decoration: none; }
+h1 { font-size: clamp(1.8rem, 2.4vw, 2.3rem); }
+h2 { font-size: clamp(1.35rem, 1.8vw, 1.6rem); }
+h3 { font-size: 1.15rem; }
+
+/* ---------- links + focus ---------- */
+a {
+  color: var(--accent);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.15em;
+}
 a:hover { color: var(--accent-dark); text-decoration: underline; }
-
-/* ---------- layout helpers ---------- */
-.container {                /* centre content & cap width */
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2.5rem 1.5rem;
+a:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+  border-radius: 2px;
 }
 
-/* ---------- cards (optional, but keeps your markup) ---------- */
-.card {
+/* ---------- container ---------- */
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: var(--pad-y) var(--pad-x);
+}
+
+/* ---------- cards / panels ---------- */
+.card,
+.sidebar {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 0;              /* Jin Sun uses sharp corners */
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
+  border-radius: 0; /* sharp corners */
+  padding: var(--space-4);
 }
 
-/* ---------- header / nav (sticky, blurred) ---------- */
+.card { margin-bottom: var(--space-4); }
+
+/* Optional: subtle depth without breaking minimalism */
+/* .card, .sidebar { box-shadow: 0 1px 0 rgba(0,0,0,0.03); } */
+
+/* ---------- header / nav ---------- */
 header {
   position: sticky;
   top: 0;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--border);
   z-index: 10;
+  height: var(--header-h);
+  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+/* Fallback when backdrop-filter is unsupported */
+@supports ((backdrop-filter: blur(8px)) or (-webkit-backdrop-filter: blur(8px))) {
+  header {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.80);
+  }
 }
 
 .nav {
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 1.5rem;
+  padding: 0 var(--pad-x);
+  gap: var(--space-3);
 }
 
-.brand { font-weight: 700; font-size: 1.1rem; }
+.brand {
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
 
 nav a {
-  margin-left: 1rem;
   font-weight: 600;
-  padding-bottom: 0.25rem;
   position: relative;
+  padding: 0.15rem 0;
+  text-decoration: none; /* keep clean; hover adds underline */
 }
-nav a:hover::after {
+
+nav a:hover::after,
+nav a:focus-visible::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -0.2rem;
   width: 100%;
   height: 2px;
   background: var(--accent);
 }
 
-/* ---------- sidebar (keep if you want) ---------- */
-.layout { display: grid; grid-template-columns: 260px 1fr; gap: 2rem; }
-@media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
-
-.sidebar {
-  position: sticky;
-  top: 5rem;
-  align-self: start;
-  background: var(--card);
-  border: 1px solid var(--border);
-  padding: 1.5rem;
+/* ---------- layout grid ---------- */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) 1fr;
+  gap: var(--space-5);
 }
 
-.avatar {                     /* round portrait */
-  width: 140px; height: 140px;
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+}
+
+/* ---------- sidebar ---------- */
+.sidebar {
+  position: sticky;
+  top: calc(var(--header-h) + var(--space-4));
+  align-self: start;
+}
+
+.avatar {
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   border: 3px solid var(--accent);
-  display: block; margin: 0 auto 0.75rem;
+  margin: 0 auto var(--space-2);
+  object-fit: cover;
+}
+
+/* ---------- tables ---------- */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  border-bottom: 1px solid var(--border);
+  padding: var(--space-2) 0;
+  text-align: left;
+  vertical-align: top;
+}
+
+.table th {
+  font-weight: 600;
+  color: var(--text);
 }
 
 /* ---------- footer ---------- */
 .footer {
-  margin-top: 3rem;
-  padding: 2rem 0;
+  margin-top: var(--space-6);
+  padding: var(--space-5) 0;
   border-top: 1px solid var(--border);
   color: var(--muted);
   font-size: 0.9rem;
   text-align: center;
 }
 
-/* ---------- tables (publications, etc.) ---------- */
-.table { width: 100%; border-collapse: collapse; }
-.table th, .table td { border-bottom: 1px solid var(--border); padding: 0.6rem 0; text-align: left; }
+/* ---------- quality-of-life ---------- */
+::selection {
+  background: color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f141a;
+    --card: #121a22;
+    --text: #e6edf3;
+    --muted: #a8b3bd;
+    --border: #22303c;
+    --accent: #4aa3ff;
+    --accent-dark: #88c2ff;
+  }
+
+  html { color-scheme: dark; }
+
+  header {
+    background: rgba(15, 20, 26, 0.92);
+    border-bottom-color: var(--border);
+  }
+
+  @supports ((backdrop-filter: blur(8px)) or (-webkit-backdrop-filter: blur(8px))) {
+    header { background: rgba(15, 20, 26, 0.75); }
+  }
+}
