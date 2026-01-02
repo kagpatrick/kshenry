@@ -606,3 +606,48 @@ main,
 html {
   scroll-padding-top: calc(var(--header-h) + 16px);
 }
+
+
+
+/* =========================================================
+   CENTER CONTENT + ADD SIDE BREATHING SPACE
+   ========================================================= */
+
+/* Overall page width (controls side space) */
+:root {
+  --page-width: 1080px;   /* try 1040–1120 if you want more/less space */
+  --side-space: 24px;
+}
+
+/* Center everything */
+header .nav,
+main,
+.footer {
+  max-width: var(--page-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--side-space);
+  padding-right: var(--side-space);
+}
+
+/* Keep body background visible on sides */
+body {
+  background-color: var(--bg);
+}
+
+/* Ensure layout grid stays centered */
+.layout {
+  justify-content: center;
+}
+
+/* Optional: limit text line length for readability */
+.content {
+  max-width: 72ch;
+}
+
+/* Mobile tuning */
+@media (max-width: 900px) {
+  :root {
+    --side-space: 16px;
+  }
+}
