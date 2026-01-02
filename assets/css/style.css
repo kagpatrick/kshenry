@@ -651,3 +651,37 @@ body {
     --side-space: 16px;
   }
 }
+
+/* =========================================================
+   ALIGN PANELS: make sidebar + main start at same top line
+   ========================================================= */
+
+/* 1) Center the page using .container (not main) */
+.container {
+  max-width: var(--page-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+/* 2) main is a grid column here, so remove page-level padding from it */
+.layout > main {
+  padding: 0;
+  margin: 0;
+}
+
+/* 3) Ensure grid columns align at top */
+.layout {
+  align-items: start;
+}
+
+/* 4) Remove “extra top gap” inside first card */
+.layout > main .card:first-child {
+  margin-top: 0;
+}
+.layout > main .card:first-child h1,
+.layout > main .card:first-child h2,
+.layout > main .card:first-child h3 {
+  margin-top: 0;
+}
