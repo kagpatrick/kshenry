@@ -1139,3 +1139,206 @@ a.btn:hover{
 .sidebar hr {
   margin: 12px 0;
 }
+/* =========================================================
+   FACULTY / GRANTS FINAL POLISH PACK
+   Goal: credible, scannable, committee-friendly.
+   ========================================================= */
+
+/* Layout / readability */
+:root{
+  --page-width: 1120px;
+  --gutter: 28px;
+  --header-h: 72px;
+
+  --panel-radius: 16px;
+  --panel-border: rgba(17, 24, 39, 0.10);
+  --panel-shadow: 0 12px 30px rgba(17, 24, 39, 0.10);
+
+  --text-strong: rgba(17, 24, 39, 0.94);
+  --text-body: rgba(31, 41, 55, 0.88);
+  --text-muted: rgba(31, 41, 55, 0.66);
+}
+
+/* Center everything consistently */
+header{
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: var(--bg);
+  border-bottom: 1px solid var(--panel-border);
+}
+header .nav{
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 14px var(--gutter);
+  min-height: var(--header-h);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.container{
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 22px var(--gutter) 0;
+}
+
+.layout{
+  display: grid;
+  grid-template-columns: minmax(340px, 380px) minmax(0, 1fr);
+  gap: 44px;
+  align-items: start;
+}
+
+.layout > main{
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Panels */
+.card, .sidebar{
+  border-radius: var(--panel-radius);
+  border: 1px solid var(--panel-border);
+  background: #fff;
+  box-shadow: var(--panel-shadow);
+}
+
+/* Content card spacing for professional rhythm */
+.card{
+  padding: 36px 40px;
+  margin-bottom: 30px;
+}
+
+/* Typography tuned for committees */
+body{
+  color: var(--text-body);
+  letter-spacing: -0.01em;
+}
+.card p{ color: var(--text-body); }
+.card strong{ color: var(--text-strong); }
+
+/* Headings: confident, not “bloggy” */
+h1, h2, h3{
+  color: var(--text-strong);
+}
+.card h1{
+  margin: 0.35rem 0 0.85rem;
+  line-height: 1.08;
+  font-weight: 900;
+}
+.card .kicker{
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+/* Make lists read like CV bullets */
+.card ul{
+  margin: 0.75rem 0 0;
+  padding-left: 1.2rem;
+}
+.card li{
+  margin: 0.48rem 0;
+  color: var(--text-body);
+}
+
+/* Buttons: understated but strong */
+a.btn{
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(48, 105, 152, 0.28);
+  background: rgba(48, 105, 152, 0.08);
+  text-decoration: none;
+  font-weight: 750;
+}
+a.btn:hover{
+  background: rgba(48, 105, 152, 0.12);
+  border-color: rgba(48, 105, 152, 0.38);
+  text-decoration: none;
+}
+
+/* Sidebar: hiring-ready “profile card” */
+.sidebar{
+  overflow: hidden;
+  position: sticky;
+  top: calc(var(--header-h) + 16px);
+  align-self: start;
+  height: fit-content;
+}
+
+.sidebar img.avatar{
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+}
+
+/* Sidebar content indentation (balanced, not centered) */
+.sidebar .name,
+.sidebar .tagline,
+.sidebar .meta{
+  padding-left: 22px;
+  padding-right: 22px;
+}
+
+.sidebar .name{
+  margin: 16px 0 6px;
+  font-size: 1.25rem;
+  font-weight: 900;
+  line-height: 1.22;
+  color: var(--text-strong);
+}
+.sidebar .tagline{
+  margin: 0 0 12px;
+  color: var(--text-muted);
+}
+
+.sidebar hr{
+  border: 0;
+  border-top: 1px solid var(--panel-border);
+  margin: 14px 0;
+}
+
+/* Meta lines: tight, committee-scannable */
+.sidebar{
+  line-height: 1.35;
+}
+.sidebar .meta{
+  margin: 6px 0;
+}
+.sidebar .badge{
+  font-weight: 850;
+  margin-right: 8px;
+  color: var(--text-strong);
+}
+
+/* Links wrap nicely */
+.sidebar .meta a{
+  white-space: nowrap;
+}
+
+/* Active nav state: understated underline */
+nav a.active,
+nav a[aria-current="page"]{
+  color: var(--accent-hover);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+/* Anchor jumps so headings aren’t hidden behind header */
+html{
+  scroll-padding-top: calc(var(--header-h) + 18px);
+}
+
+/* Mobile */
+@media (max-width: 900px){
+  :root{ --gutter: 16px; }
+  .layout{ grid-template-columns: 1fr; gap: 24px; }
+  .card{ padding: 26px 22px; }
+  .sidebar{ position: static; }
+  .sidebar img.avatar{ height: 260px; }
+}
