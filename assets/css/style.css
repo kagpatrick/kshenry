@@ -652,3 +652,85 @@ body {
   }
 }
 
+/* =========================================================
+   HARD ALIGNMENT: header + sidebar + cards share same grid
+   ========================================================= */
+
+/* 1) Single source of truth for page width + side padding */
+:root {
+  --page-width: 1120px;   /* adjust if you want wider/narrower */
+  --gutter: 28px;         /* side space */
+  --header-h: 72px;       /* frozen header height */
+}
+
+/* 2) Header is full-width, but its INNER content uses the same grid as the page */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: var(--bg);
+  border-bottom: 1px solid rgba(31, 41, 55, 0.12);
+}
+
+/* Align header content to the same centered column as the layout */
+header .nav {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+  min-height: var(--header-h);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+/* 3) Center the entire body content using ONE wrapper */
+.container {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+/* 4) Space below header without shifting only the right column */
+.container {
+  padding-top: 22px; /* space under frozen header */
+}
+
+/* 5) Make the grid start flush: sidebar + main aligned at top */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(340px, 380px) minmax(0, 1fr);
+  gap: 44px;
+  align-items: start;
+}
+
+/* 6) main is a GRID COLUMN here; remove any page padding that could shift it */
+.layout > main {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* 7) Remove extra top spacing inside the first card (often caused by heading margins) */
+.layout > main .card:first-child {
+  margin-top: 0;
+}
+.layout > main .card:first-child h1,
+.layout > main .card:first-child h2,
+.layout > main .card:first-child h3 {
+  margin-top: 0;
+}
+
+/* 8) Sticky sidebar should respect frozen header */
+.sidebar {
+  position: sticky;
+  top: calc(var(--header-h) + 16px);
+}
+
+/* 9) Footer aligned to same grid */
+.footer {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
