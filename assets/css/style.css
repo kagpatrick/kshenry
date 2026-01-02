@@ -734,3 +734,26 @@ header .nav {
   padding-left: var(--gutter);
   padding-right: var(--gutter);
 }
+
+/* =========================================================
+   FREEZE LEFT PROFILE PANEL (SIDEBAR)
+   ========================================================= */
+
+/* Ensure layout allows sticky behavior */
+.layout {
+  align-items: start;
+}
+
+/* Freeze the entire left panel */
+.sidebar {
+  position: sticky;
+  top: calc(var(--header-h) + 16px); /* below frozen header */
+  align-self: start;
+  height: fit-content;
+}
+
+/* Safety: ensure no parent blocks sticky */
+.container,
+.layout {
+  overflow: visible;
+}
