@@ -1342,3 +1342,41 @@ html{
   .sidebar{ position: static; }
   .sidebar img.avatar{ height: 260px; }
 }
+/* =========================================================
+   FIXED (STICKY) PROFILE PANEL — ALWAYS VISIBLE
+   ========================================================= */
+
+/* Make layout explicitly allow sticky behavior */
+.layout {
+  align-items: flex-start;
+}
+
+/* Sidebar stays fixed while content scrolls */
+.sidebar {
+  position: sticky;
+  top: calc(var(--header-h) + 20px); /* sits below header */
+  align-self: flex-start;
+
+  max-height: calc(100vh - var(--header-h) - 32px);
+  overflow: visible; /* do NOT scroll inside */
+}
+
+/* Ensure main content scrolls normally */
+main {
+  overflow: visible;
+}
+
+/* Prevent parent containers from breaking sticky */
+.container,
+.layout,
+body {
+  overflow: visible;
+}
+
+/* Mobile: disable sticky (required for usability) */
+@media (max-width: 900px) {
+  .sidebar {
+    position: static;
+    max-height: none;
+  }
+}
