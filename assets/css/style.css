@@ -1343,40 +1343,27 @@ html{
   .sidebar img.avatar{ height: 260px; }
 }
 /* =========================================================
-   FIXED (STICKY) PROFILE PANEL — ALWAYS VISIBLE
+   PROFILE PANEL: ALWAYS KEEP GAP BELOW STICKY HEADER
    ========================================================= */
 
-/* Make layout explicitly allow sticky behavior */
-.layout {
-  align-items: flex-start;
+:root{
+  --profile-gap: 24px; /* adjust 16–32px */
 }
 
-/* Sidebar stays fixed while content scrolls */
-.sidebar {
+/* Profile panel sticks with a permanent gap below header */
+.sidebar{
   position: sticky;
-  top: calc(var(--header-h) + 20px); /* sits below header */
-  align-self: flex-start;
-
-  max-height: calc(100vh - var(--header-h) - 32px);
-  overflow: visible; /* do NOT scroll inside */
+  top: calc(var(--header-h) + var(--profile-gap));
+  align-self: start;
 }
 
-/* Ensure main content scrolls normally */
-main {
+/* Ensure the profile panel never "fills" the header space */
+.sidebar{
+  max-height: calc(100vh - var(--header-h) - var(--profile-gap) - 20px);
+  overflow: visible; /* no internal scrolling */
+}
+
+/* If any parent overflow breaks sticky, neutralize it */
+.container, .layout{
   overflow: visible;
-}
-
-/* Prevent parent containers from breaking sticky */
-.container,
-.layout,
-body {
-  overflow: visible;
-}
-
-/* Mobile: disable sticky (required for usability) */
-@media (max-width: 900px) {
-  .sidebar {
-    position: static;
-    max-height: none;
-  }
 }
