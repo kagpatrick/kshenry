@@ -757,3 +757,44 @@ header .nav {
 .layout {
   overflow: visible;
 }
+/* =========================================================
+   CENTER SIDEBAR TEXT (name, tagline, meta, links)
+   ========================================================= */
+
+.sidebar {
+  text-align: center;          /* centers all text inside sidebar */
+}
+
+/* Name + tagline */
+.sidebar .name {
+  font-weight: 850;
+  margin: 12px 0 6px;
+}
+
+.sidebar .tagline {
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+
+/* Meta rows (Location/Email/Phone/Links) */
+.sidebar .meta {
+  margin: 10px 0;
+}
+
+/* Make the badge label appear above the value (cleaner, centered) */
+.sidebar .meta .badge {
+  display: block;
+  font-weight: 750;
+  margin-bottom: 4px;
+}
+
+/* Center the links row cleanly */
+.sidebar .meta a {
+  display: inline-block;
+}
+
+/* Optional: make the separator line centered/consistent */
+.sidebar hr {
+  margin: 16px auto;
+  width: 85%;
+}
