@@ -557,3 +557,52 @@ nav a[aria-current="page"] {
   .sidebar img.avatar { height: 280px; }
   .news-item { grid-template-columns: 1fr; }
 }
+
+
+
+/* =========================================================
+   FIX: Frozen header, no overlap, centered website
+   ========================================================= */
+
+/* Header height (adjust if needed) */
+:root {
+  --header-h: 72px;
+}
+
+/* Freeze header */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Ensure header has stable height */
+header .nav {
+  min-height: var(--header-h);
+}
+
+/* Push content down so it never hides under header */
+main {
+  padding-top: calc(var(--pad-y) + var(--header-h));
+}
+
+/* Center header, main content, and footer */
+header .nav,
+main,
+.footer {
+  max-width: var(--page-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Sidebar respects frozen header */
+.sidebar {
+  top: calc(var(--header-h) + 16px);
+}
+
+/* Prevent anchor links being hidden under header */
+html {
+  scroll-padding-top: calc(var(--header-h) + 16px);
+}
