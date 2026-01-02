@@ -615,7 +615,7 @@ html {
 
 /* Overall page width (controls side space) */
 :root {
-  --page-width: 1080px;   /* try 1040–1120 if you want more/less space */
+  --page-width: 1000px;   /* try 1040–1120 if you want more/less space */
   --side-space: 24px;
 }
 
