@@ -798,3 +798,48 @@ header .nav {
   margin: 16px auto;
   width: 85%;
 }
+
+/* =========================================================
+   BALANCED INDENT (NOT CENTERED) FOR SIDEBAR CONTENT
+   ========================================================= */
+
+/* Keep sidebar text left-aligned */
+.sidebar {
+  text-align: left;
+}
+
+/* Indent all text blocks inside sidebar */
+.sidebar .name,
+.sidebar .tagline,
+.sidebar .meta {
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+/* Slight hierarchy polish */
+.sidebar .name {
+  font-weight: 850;
+  margin-top: 14px;
+  margin-bottom: 6px;
+}
+
+.sidebar .tagline {
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+/* Meta rows spacing */
+.sidebar .meta {
+  margin: 10px 0;
+  line-height: 1.55;
+}
+
+/* Keep horizontal rules aligned with text block */
+.sidebar hr {
+  margin: 16px 18px;
+}
+
+/* Links stay left-aligned but clean */
+.sidebar .meta a {
+  white-space: nowrap;
+}
