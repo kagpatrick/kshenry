@@ -1,45 +1,63 @@
-/* ---------- Jin Sun look-alike variables (enhanced) ---------- */
-:root {
-  /* Colors */
-  --bg: #ffffff;
-  --text: #2c3e50;
-  --muted: #7f8c8d;
-  --accent: #3498db;
-  --accent-dark: #2980b9;
-  --border: #ecf0f1;
-  --card: #ffffff;
+/* ==========================================================================
+   Python-docs-inspired minimalist theme (warm off-white canvas + generous padding)
+   Drop-in full CSS file
+   ========================================================================== */
 
-  /* Type */
+/* ---------- Theme tokens ---------- */
+:root {
+  /* Canvas + surfaces (Python-ish “whitish”) */
+  --bg: #f7f7f3;               /* warm off-white canvas */
+  --surface: #ffffff;          /* cards / panels */
+  --surface-2: #fbfbf8;        /* subtle alt background */
+
+  /* Text */
+  --text: #1f2937;             /* near-slate */
+  --muted: #6b7280;            /* grey for secondary text */
+
+  /* Brand accents (Python-blue leaning, but restrained) */
+  --accent: #306998;
+  --accent-hover: #1e4f7a;
+
+  /* Lines + shadows */
+  --border: #e6e6e0;           /* warm light border */
+  --shadow: 0 1px 0 rgba(0, 0, 0, 0.03);
+
+  /* Typography */
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
                "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
                "Segoe UI Emoji", "Segoe UI Symbol";
-  --text-size: 16px;
-  --line: 1.65;
+  --base-size: 16px;
+  --line: 1.7;
 
-  /* Layout + spacing scale */
-  --container: 72ch;          /* better reading width than px */
-  --pad-x: 1.5rem;
-  --pad-y: 2.5rem;
+  /* Layout */
+  --container: 74ch;           /* comfortable reading width */
+  --gutter: 2rem;
+  --pad-y: 4rem;
 
-  --space-1: 0.5rem;
-  --space-2: 0.75rem;
-  --space-3: 1rem;
-  --space-4: 1.5rem;
-  --space-5: 2rem;
-  --space-6: 3rem;
+  /* Spacing scale */
+  --s1: 0.5rem;
+  --s2: 0.75rem;
+  --s3: 1rem;
+  --s4: 1.5rem;
+  --s5: 2rem;
+  --s6: 3rem;
+  --s7: 4rem;
 
   /* UI */
-  --header-h: 3.5rem;         /* used for sticky offsets */
-  --ring: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
+  --radius: 6px;               /* subtle rounding (docs-like) */
+  --header-h: 3.75rem;
+  --focus-ring: 0 0 0 3px color-mix(in srgb, var(--accent) 28%, transparent);
 }
 
-/* ---------- reset & base ---------- */
+/* ---------- Reset ---------- */
 *,
 *::before,
-*::after { box-sizing: border-box; }
+*::after {
+  box-sizing: border-box;
+}
 
 html {
-  font-size: var(--text-size);
+  font-size: var(--base-size);
   color-scheme: light;
   text-size-adjust: 100%;
 }
@@ -55,77 +73,135 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-img, svg, video {
+img,
+svg,
+video,
+canvas {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-/* ---------- typography ---------- */
-p { margin: 0 0 var(--space-3); }
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* ---------- Typography ---------- */
+p {
+  margin: 0 0 var(--s4);
+  color: var(--text);
+}
+
+small {
+  color: var(--muted);
+}
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: inherit;
-  font-weight: 600;
-  color: var(--text);
-  margin: var(--space-5) 0 var(--space-2);
+  margin: var(--s6) 0 var(--s3);
+  font-weight: 650;
   letter-spacing: -0.01em;
+  color: var(--text);
 }
 
-h1 { font-size: clamp(1.8rem, 2.4vw, 2.3rem); }
-h2 { font-size: clamp(1.35rem, 1.8vw, 1.6rem); }
-h3 { font-size: 1.15rem; }
+h1 {
+  margin-top: 0;
+  font-size: clamp(1.9rem, 2.6vw, 2.4rem);
+  line-height: 1.25;
+}
 
-/* ---------- links + focus ---------- */
+h2 {
+  font-size: clamp(1.35rem, 1.8vw, 1.65rem);
+  line-height: 1.35;
+}
+
+h3 {
+  font-size: 1.15rem;
+  line-height: 1.4;
+}
+
+h4 { font-size: 1.05rem; }
+h5 { font-size: 1rem; }
+h6 { font-size: 0.95rem; color: var(--muted); }
+
+ul, ol {
+  margin: 0 0 var(--s4);
+  padding-left: 1.25rem;
+}
+
+li { margin: 0.25rem 0; }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: var(--s6) 0;
+}
+
+/* ---------- Links + focus ---------- */
 a {
   color: var(--accent);
-  text-decoration-thickness: 0.08em;
-  text-underline-offset: 0.15em;
-}
-a:hover { color: var(--accent-dark); text-decoration: underline; }
-a:focus-visible {
-  outline: none;
-  box-shadow: var(--ring);
-  border-radius: 2px;
+  text-decoration: none;
+  text-underline-offset: 0.18em;
 }
 
-/* ---------- container ---------- */
+a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: 4px;
+}
+
+/* ---------- Layout helpers ---------- */
 .container {
   max-width: var(--container);
   margin: 0 auto;
-  padding: var(--pad-y) var(--pad-x);
+  padding: var(--pad-y) var(--gutter);
 }
 
-/* ---------- cards / panels ---------- */
-.card,
-.sidebar {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 0; /* sharp corners */
-  padding: var(--space-4);
+.section {
+  margin-bottom: var(--s6);
 }
 
-.card { margin-bottom: var(--space-4); }
+/* Two-column layout: sidebar + content */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(240px, 300px) 1fr;
+  gap: var(--s6);
+}
 
-/* Optional: subtle depth without breaking minimalism */
-/* .card, .sidebar { box-shadow: 0 1px 0 rgba(0,0,0,0.03); } */
+/* Stack on smaller screens */
+@media (max-width: 900px) {
+  :root { --gutter: 1.25rem; --pad-y: 2.75rem; }
+  .layout { grid-template-columns: 1fr; gap: var(--s5); }
+}
 
-/* ---------- header / nav ---------- */
+/* ---------- Header / nav ---------- */
 header {
   position: sticky;
   top: 0;
   z-index: 10;
   height: var(--header-h);
   border-bottom: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(247, 247, 243, 0.92); /* matches canvas */
 }
 
-/* Fallback when backdrop-filter is unsupported */
+/* Backdrop blur where supported */
 @supports ((backdrop-filter: blur(8px)) or (-webkit-backdrop-filter: blur(8px))) {
   header {
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    background: rgba(255, 255, 255, 0.80);
+    background: rgba(247, 247, 243, 0.78);
   }
 }
 
@@ -134,12 +210,12 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 var(--pad-x);
-  gap: var(--space-3);
+  gap: var(--s4);
+  padding: 0 var(--gutter);
 }
 
 .brand {
-  font-weight: 700;
+  font-weight: 750;
   font-size: 1.05rem;
   letter-spacing: -0.01em;
   white-space: nowrap;
@@ -149,42 +225,63 @@ nav {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: var(--space-3);
+  gap: var(--s3);
 }
 
 nav a {
   font-weight: 600;
+  padding: 0.2rem 0.1rem;
   position: relative;
-  padding: 0.15rem 0;
-  text-decoration: none; /* keep clean; hover adds underline */
 }
 
+/* Underline indicator on hover/focus */
 nav a:hover::after,
 nav a:focus-visible::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -0.2rem;
+  bottom: -0.25rem;
   width: 100%;
   height: 2px;
   background: var(--accent);
 }
 
-/* ---------- layout grid ---------- */
-.layout {
-  display: grid;
-  grid-template-columns: minmax(220px, 280px) 1fr;
-  gap: var(--space-5);
+/* Optional active state if you add aria-current="page" */
+nav a[aria-current="page"] {
+  color: var(--accent-hover);
+}
+nav a[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.25rem;
+  width: 100%;
+  height: 2px;
+  background: var(--accent-hover);
 }
 
-@media (max-width: 900px) {
-  .layout { grid-template-columns: 1fr; }
+/* ---------- Cards / panels ---------- */
+.card,
+.sidebar {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--s5);
 }
 
-/* ---------- sidebar ---------- */
+.card {
+  margin-bottom: var(--s5);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* ---------- Sidebar ---------- */
 .sidebar {
   position: sticky;
-  top: calc(var(--header-h) + var(--space-4));
+  top: calc(var(--header-h) + var(--s4));
   align-self: start;
 }
 
@@ -192,70 +289,134 @@ nav a:focus-visible::after {
   width: 140px;
   height: 140px;
   border-radius: 50%;
-  border: 3px solid var(--accent);
-  margin: 0 auto var(--space-2);
+  border: 3px solid color-mix(in srgb, var(--accent) 70%, white);
+  margin: 0 auto var(--s3);
   object-fit: cover;
 }
 
-/* ---------- tables ---------- */
+/* ---------- Code blocks (docs-like) ---------- */
+code,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+               "Liberation Mono", "Courier New", monospace;
+  font-size: 0.95em;
+}
+
+code {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  padding: 0.12em 0.35em;
+  border-radius: 5px;
+}
+
+pre {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--s4);
+  overflow: auto;
+  margin: 0 0 var(--s5);
+}
+
+pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+/* ---------- Tables ---------- */
 .table {
   width: 100%;
   border-collapse: collapse;
+  margin: 0 0 var(--s5);
 }
 
 .table th,
 .table td {
+  padding: var(--s3) 0;
   border-bottom: 1px solid var(--border);
-  padding: var(--space-2) 0;
   text-align: left;
   vertical-align: top;
 }
 
 .table th {
-  font-weight: 600;
-  color: var(--text);
+  font-weight: 650;
 }
 
-/* ---------- footer ---------- */
+/* ---------- Buttons (optional utility) ---------- */
+.button,
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.95rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+}
+
+.button:hover,
+button:hover {
+  border-color: color-mix(in srgb, var(--accent) 25%, var(--border));
+}
+
+.button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.button.primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+/* ---------- Footer ---------- */
 .footer {
-  margin-top: var(--space-6);
-  padding: var(--space-5) 0;
+  margin-top: var(--s7);
+  padding: var(--s6) 0;
   border-top: 1px solid var(--border);
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   text-align: center;
 }
 
-/* ---------- quality-of-life ---------- */
+/* ---------- Selection ---------- */
 ::selection {
-  background: color-mix(in srgb, var(--accent) 20%, transparent);
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
 }
 
-/* Reduced motion */
+/* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior: auto !important; }
 }
 
-/* Dark mode */
+/* ---------- Dark mode (optional, still “docs-like”) ---------- */
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #0f141a;
-    --card: #121a22;
+    --surface: #121a22;
+    --surface-2: #0f1720;
     --text: #e6edf3;
     --muted: #a8b3bd;
     --border: #22303c;
     --accent: #4aa3ff;
-    --accent-dark: #88c2ff;
+    --accent-hover: #88c2ff;
+    --shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
   }
 
   html { color-scheme: dark; }
 
   header {
-    background: rgba(15, 20, 26, 0.92);
+    background: rgba(15, 20, 26, 0.9);
     border-bottom-color: var(--border);
   }
 
   @supports ((backdrop-filter: blur(8px)) or (-webkit-backdrop-filter: blur(8px))) {
-    header { background: rgba(15, 20, 26, 0.75); }
+    header { background: rgba(15, 20, 26, 0.72); }
   }
+
+  .button.primary { color: #06101a; }
 }
