@@ -1091,3 +1091,51 @@ a.btn:hover{
     padding-right: 18px;
   }
 }
+/* =========================================================
+   TIGHT PROFILE PANEL SPACING (NO EXTRA LINE GAPS)
+   ========================================================= */
+
+/* Overall tighter line height in sidebar */
+.sidebar {
+  line-height: 1.35;
+}
+
+/* Name + tagline: compact */
+.sidebar .name {
+  margin: 12px 0 2px;     /* was larger */
+}
+
+.sidebar .tagline {
+  margin: 0 0 10px;
+}
+
+/* Meta blocks: remove extra vertical gaps */
+.sidebar .meta {
+  margin: 4px 0;          /* very tight */
+  line-height: 1.35;
+}
+
+/* If you show labels as separate lines (Location / Email / Phone) */
+.sidebar .badge {
+  display: block;
+  margin: 0 0 2px;        /* no gap under label */
+  font-weight: 800;
+}
+
+/* Text immediately under labels */
+.sidebar .meta span,
+.sidebar .meta a,
+.sidebar .meta div {
+  margin: 0;
+  padding: 0;
+}
+
+/* Links block: keep compact */
+.sidebar .meta:last-of-type {
+  margin-top: 6px;
+}
+
+/* Divider lines: tighter */
+.sidebar hr {
+  margin: 12px 0;
+}
