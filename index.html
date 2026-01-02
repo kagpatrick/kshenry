@@ -23,12 +23,13 @@
   <div class="layout">
     
     <aside class="sidebar">
-     <img
+ <img
   class="avatar"
   src="/assets/img/henry-sohre-kitiabi.jpg"
   alt="Henry Sohre Kitiabi"
-  onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'avatar',textContent:'HK'}))"
+  onerror="const d=document.createElement('div');d.className='avatar';d.textContent='HK';d.setAttribute('aria-label','Henry Sohre Kitiabi');this.replaceWith(d);"
 />
+
 
       <div class="name">Henry Sohre Kitiabi, PhD, MPH</div>
       <div class="tagline">Advancing Data-Driven Public Health</div>
